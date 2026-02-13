@@ -1,10 +1,12 @@
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url("heart-bg.jpg");
+    background-size: cover;
+    background-position: center;
     font-family: "Pixelify Sans", sans-serif;
 }
 
@@ -27,7 +29,8 @@ body {
 }
 
 #envelope{
-    width: 200px;
+    width: min(40vw, 220px);
+    max-width: 220px;
     animation: pulse 1.5s infinite;
     cursor: pointer;
 }
@@ -44,7 +47,7 @@ body {
     width: 90vw;
     max-width: 800px;
     aspect-ratio: 3/2;
-    padding: 20px 20px 0 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,10 +56,10 @@ body {
     background-image: url("window.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top center;
     border-radius: 12px;
-    gap: 1px;
-    padding-top: 180px;
+    gap: 8px;
+    padding-top: min(26vh, 160px);
 
     transform: scale(1.2);
     opacity: 0;
@@ -69,31 +72,33 @@ body {
 }
 
 h1 {
-    font-size: 30px;
-    margin:0;
+    font-size: clamp(20px, 3.5vw, 32px);
+    margin: 0;
 }
 
 p {
-    font-size: 40px;
+    font-size: clamp(18px, 4vw, 40px);
 }
 
 /* Cat */
 
 .cat {
-    width: 250px;
+    width: min(60vw, 250px);
+    max-width: 250px;
     margin: 10px 0;
+    height: auto;
     transition: width 0.4s ease;
 }
 
 .letter-window.final .cat {
-    width: 180px;
+    width: min(50vw, 180px);
 }
 
 /* buttons */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: clamp(12px, 6vw, 40px);
     position: relative;
 }
 
@@ -102,16 +107,16 @@ p {
 }
 
 .btn {
-    width: 120px;
+    width: clamp(64px, 18vw, 120px);
     cursor: pointer;
     user-select: none;
 }
 
 .yes-btn,
 .no-btn {
-width: 120px;
-height: auto;
-display: inline-block;
+    width: clamp(64px, 18vw, 120px);
+    height: auto;
+    display: inline-block;
 }
 
 .yes-btn {
@@ -129,11 +134,28 @@ display: inline-block;
 }
 
 .final-text{
-    font-size: 22px;
+    font-size: clamp(14px, 3.2vw, 22px);
     line-height: 1.4;
     text-align: center;
     display: inline-block;
     padding: 10px 20px;
-    background-color: rgba(255,240,240,0.5);
+    background-color: rgba(255,240,240,0.6);
     border-radius: 12px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .letter-window { padding-top: min(22vh, 140px); }
+    .cat { width: min(50vw, 220px); }
+}
+
+@media (max-width: 480px) {
+    body { align-items: flex-start; padding-top: 24px; }
+    #envelope { width: min(48vw, 180px); }
+    .letter-window { width: 95vw; padding: 14px; padding-top: 120px; aspect-ratio: auto; }
+    .cat { width: min(60vw, 160px); }
+    .buttons { gap: 12px; }
+    .btn { width: clamp(56px, 28vw, 96px); }
+    h1 { font-size: clamp(18px, 5.5vw, 26px); }
+    p { font-size: clamp(16px, 5.5vw, 28px); }
 }
